@@ -17,12 +17,16 @@ public class AddressableImportSettings : ScriptableObject
     public bool rulesEnabled = true;
 
     [Tooltip("Creates a group if the specified group doesn't exist.")]
-    public bool allowGroupCreation = false;
+    public bool allowGroupCreation;
 
     [Space]
     [Tooltip("Rules for managing imported assets.")]
 #if ODIN_INSPECTOR
-    [ListDrawerSettings(HideAddButton = false,Expanded = false,DraggableItems = true,HideRemoveButton = false)]
+#if ODIN_INSPECTOR
+    [ListDrawerSettings(HideAddButton = false, ShowFoldout = false, DraggableItems = true, HideRemoveButton = false)]
+#else
+    [ListDrawerSettings(HideAddButton = false, Expanded = false, DraggableItems = true, HideRemoveButton = false)]
+#endif
     [Searchable(FilterOptions = SearchFilterOptions.ISearchFilterableInterface)]
 #endif
     public List<AddressableImportRule> rules = new List<AddressableImportRule>();

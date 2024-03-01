@@ -83,6 +83,7 @@ public class AddressableImportSettingsList : ScriptableObject
     {
         var importSettingsGuidList = AssetDatabase.FindAssets($"t:{nameof(AddressableImportSettings)}");
         SettingList = importSettingsGuidList.Select((guid) => AssetDatabase.LoadAssetAtPath<AddressableImportSettings>(AssetDatabase.GUIDToAssetPath(guid))).ToList();
+        EditorUtility.SetDirty(this);
         AssetDatabase.SaveAssets();
     }
 
